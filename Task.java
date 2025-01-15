@@ -1,25 +1,60 @@
+import CustomExceptions.IdReassignmentException;
+
+import java.time.*;
+
 public class Task {
-    private int taskId;
-    private String taskName;
-    private TaskStatus taskStatus;
-    Task(){
-        taskName = "";
-        taskStatus = TaskStatus.PENDING;
-    }
-    Task(String taskName, TaskStatus taskStatus){
-        this.taskName = taskName;
-        this.taskStatus = taskStatus;
+    private int id;
+    private String description;
+    private TaskStatus status;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+
+    private Task() {}
+
+    Task(String description, TaskStatus taskStatus) {
+        this.description = description;
+        this.status = taskStatus;
+        this.createdAt = LocalDateTime.now();
+        updateUpdatedAt();
     }
 
-    public int getTaskId(){
-        return taskId;
+    public int getId() {
+        return id;
     }
 
-    public String getTaskName(){
-        return taskName;
+    public void setId(int id) {
+        if(this.id != 0){
+            throw new IdReassignmentException("Id cannot be reassigned once it is set");
+        }
+        this.id = id;
     }
 
-    public TaskStatus getTaskStatus(){
-        return taskStatus;
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public TaskStatus getTaskStatus() {
+        return status;
+    }
+
+    public void markStatus(TaskStatus status) {
+        this.status = status;
+    }
+
+    public String getCreatedAt(){
+        return createdAt.toString();
+    }
+
+    private void updateUpdatedAt(){
+        updatedAt = LocalDateTime.now();
+    }
+
+    @Override
+    public String toString(){
+        return "Class - Task : {id = " + id + ", description = " + description + ", createdAt = " + createdAt.toString() + ", lastUpdatedAt = " + updatedAt.toString()+" }";
     }
 }
