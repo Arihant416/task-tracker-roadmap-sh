@@ -1,7 +1,11 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        for(String arg : args){
-            System.out.println(arg);
-        }
+        /*
+        * Initialise or load existing tasks
+        *
+        * */
+        TaskManager taskManager = new TaskManager();
     }
 }

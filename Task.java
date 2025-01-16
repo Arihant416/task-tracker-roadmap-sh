@@ -11,7 +11,8 @@ public class Task {
 
     private Task() {}
 
-    Task(String description, TaskStatus taskStatus) {
+    Task(int id, String description, TaskStatus taskStatus) {
+        this.id = id;
         this.description = description;
         this.status = taskStatus;
         this.createdAt = LocalDateTime.now();
@@ -55,6 +56,6 @@ public class Task {
 
     @Override
     public String toString(){
-        return "Class - Task : {id = " + id + ", description = " + description + ", createdAt = " + createdAt.toString() + ", lastUpdatedAt = " + updatedAt.toString()+" }";
+        return "Task : {id = " + id + ", description = " + description + ", createdAt = " + createdAt.toString() + ", lastUpdatedAt = " + updatedAt.toString()+" }";
     }
 }
