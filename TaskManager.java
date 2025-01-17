@@ -3,21 +3,22 @@ import java.util.ArrayList;
 
 public class TaskManager {
     ArrayList<Task> tasks;
-    private final String path = "tasks.txt";
+    private final String path = "tasks.json";
 
     TaskManager(){
-        loadExistingTasks();
+//        loadExistingTasks();
     }
 
-    private void loadExistingTasks(){
-        /*
-        * Load
-        * */
-        try(FileReader reader = new FileReader(path)){
-            String line;
-
+    private void loadExistingTasks() throws Exception {
+        String data = "";
+        try(BufferedReader reader = new BufferedReader(new FileReader(path))){
+            String line ;
+            while((line = reader.readLine()) != null){
+                System.out.println("Length of line " + line + line.length());
+            }
         }catch(Exception e){
-
+            System.err.println("Exception occurred while loading existing tasks "+ e);
+            throw new Exception("Some exception occurred " + e);
         }
     }
 
@@ -30,9 +31,9 @@ public class TaskManager {
 
     public void addTask(String taskDescription){
         int taskId = tasks.size()+1;
-        Task newTask = new Task(taskId, taskDescription, TaskStatus.PENDING);
-        tasks.add(newTask);
-        displayTasks();
+//        Task newTask = new Task(1, "taskDescription", TaskStatus.PENDING);
+//        tasks.add(newTask);
+//        displayTasks();
     }
 
     public void deleteTask(int taskId){
